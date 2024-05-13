@@ -20,14 +20,13 @@ const Item = styled(Paper)(({ theme }) => ({
   ...theme.typography.body2,
   padding: theme.spacing(1),
   textAlign: 'center',
+  boxShadow: 'unset',
+  fontSize: 'larger',
   color: theme.palette.text.secondary,
 }));
 
 const companies = [
-  {
-    label: 'Acoustic',
-    imgPath: Acoustic,
-  },
+
   {
     label: 'Dhouib Nabegh Service DNS',
     imgPath: Dhouib,
@@ -59,8 +58,8 @@ export default function Product() {
   };
 
   return (
-    <Stack direction="row" spacing={2} justifyContent="flex-start" alignItems="center">
-      <Grid item xs={3}>
+    <Grid container spacing={3}>
+      <Grid item xs>
         <Item>
           <Typography variant="body1" gutterBottom paragraph>
             Introducing our state-of-the-art acoustic foam cutting machine, designed to revolutionize precision cutting technology. Our innovative machine offers cutting-edge precision technology, enabling cutting along three axes of movement. Whether it's varying densities of foam or intricate designs, our machine delivers unparalleled accuracy and consistency. Utilizing hot wire cutting technology, it ensures clean, smooth cuts, meeting the demands of even the most intricate projects. With our cutting-edge machine, achieving precise, customized acoustic foam solutions has never been easier.
@@ -90,8 +89,8 @@ export default function Product() {
 
 
                 }
-                  <Typography variant="h6" gutterBottom>
-                    {company.label}
+                  <Typography variant="h6" gutterBottom style={{color:'black'}}>
+                   <i>{company.label}</i> 
                   </Typography></Stack>
 
               )
@@ -104,16 +103,13 @@ export default function Product() {
           </Typography>
         </Item>
       </Grid>
-
-
-
-      <Grid item xs={9}>
+      <Grid item xs={6}>
         <Item>
           <Typography variant="body1" paragraph>
             To place an order, we offer you a range of carefully curated items tailored to meet your specific needs. Explore our catalog including:
           </Typography>
           <Box
-            display="inline-block"
+            display="inline-table"
             justifyContent="center"
             alignItems="center"
             sx={{ maxWidth: 400, flexGrow: 1 }}>
@@ -133,27 +129,26 @@ export default function Product() {
             <Box
               component="img"
               sx={{
-                height: 300,
+                height: 400,
                 display: 'block',
-                maxWidth: 400,
                 overflow: 'hidden',
-                width: '100%',
+                width: 600,
               }}
 
               src={steps[activeStep].imgPath}
               alt={steps[activeStep].label}
             />
 
-            <Box sx={{ height: "100%", maxWidth: 400, width: "100%", p: 1 }}>
+            <Box display="contents" sx={{ height: "100%", maxWidth: 400, width: "100%", p: 1 }}>
               {activeStep === 0 ? (
                 <><title>CNC oam cutting hot wire machine </title>
-                  <strong>Price:  </strong> 6000DT Including Taxes</>
+                  <span className="price"><i>6000DT</i></span> Including Taxes</>
               ) : (
                 <>
                   <title>Acoustic Foam Black 2000X1000 mm</title>
-                  <strong> <i>Price:</i></strong> 35 DT Including Taxes<br />
+                  <span className="price"><i>35DT</i></span>  Including Taxes<br />
                   <title>Acoustic Foam Black 1000X500 mm</title>
-                  <strong> <i>Price: </i></strong> 20 DT Including Taxes
+                  <span className="price"><i>20DT</i></span>  Including Taxes
                 </>
               )}
 
@@ -196,6 +191,7 @@ export default function Product() {
         </Item>
       </Grid>
 
-    </Stack>
+    </Grid>
+
   );
 }
